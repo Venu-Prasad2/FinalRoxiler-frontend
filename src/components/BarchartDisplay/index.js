@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from "recharts";
-import { Oval } from "react-loader-spinner"; // Import loader
+import { ThreeDots } from "react-loader-spinner"; // ✅ Import ThreeDots loader
 import "./index.css";
 
 const monthNames = {
@@ -21,7 +21,7 @@ const BarchartDisplay = ({ selectedMonth }) => {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch(`http://localhost:3000/api/price-range-statistics?month=${selectedMonth}`);
+        const response = await fetch(`https://finalroxiler-backend-1.onrender.com/api/price-range-statistics?month=${selectedMonth}`);
         if (!response.ok) throw new Error("Failed to fetch price range statistics");
         const result = await response.json();
 
@@ -56,8 +56,8 @@ const BarchartDisplay = ({ selectedMonth }) => {
 
       {loading ? (
         <div className="loader-container">
-          <Oval height={50} width={50} color="#48c9b0" visible={true} ariaLabel="loading" />
-          <p>Loading price range statistics...</p>
+          <ThreeDots color="#007bff" height={50} width={50} />
+          
         </div>
       ) : error ? (
         <div className="error-text">{error}</div>
